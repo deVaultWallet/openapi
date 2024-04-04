@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  title: Converted from store.yaml with typeconv
+  version: '1'
+  x-id: redux/store.yaml
+  x-comment: >-
+    Generated from src/redux/store.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    TAppDispatch:
+      title: TAppDispatch
+    TRootState:
+      title: TRootState

@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Converted from authSlice.yaml with typeconv
+  version: '1'
+  x-id: redux/authSlice.yaml
+  x-comment: >-
+    Generated from src/redux/authSlice.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    TUser:
+      properties:
+        firstName:
+          title: TUser.firstName
+          type: string
+        lastName:
+          title: TUser.lastName
+          type: string
+        email:
+          title: TUser.email
+          type: string
+        picture:
+          title: TUser.picture
+          type: string
+      required:
+        - firstName
+        - lastName
+        - email
+        - picture
+      additionalProperties: false
+      title: TUser
+      type: object
+    TAuthState:
+      properties:
+        user:
+          anyOf:
+            - $ref: '#/components/schemas/TUser'
+              title: TAuthState.user
+            - title: TAuthState.user
+              nullable: true
+          title: TAuthState.user
+        token:
+          title: TAuthState.token
+          nullable: true
+          type: string
+      required:
+        - user
+        - token
+      additionalProperties: false
+      title: TAuthState
+      type: object

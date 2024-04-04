@@ -1,0 +1,212 @@
+openapi: 3.0.0
+info:
+  title: Converted from api.yaml with typeconv
+  version: '1'
+  x-id: redux/api.yaml
+  x-comment: >-
+    Generated from src/redux/api.ts by core-types-json-schema
+    (https://github.com/grantila/core-types-json-schema) on behalf of typeconv
+    (https://github.com/grantila/typeconv)
+paths: {}
+components:
+  schemas:
+    TMessage:
+      properties:
+        status:
+          title: TMessage.status
+      required:
+        - status
+      additionalProperties: false
+      title: TMessage
+      type: object
+    TAccountTypePayload:
+      properties:
+        type:
+          enum:
+            - personal
+            - organization
+          title: TAccountTypePayload.type
+          type: string
+        loginId:
+          title: TAccountTypePayload.loginId
+          type: string
+      required:
+        - type
+        - loginId
+      additionalProperties: false
+      title: TAccountTypePayload
+      type: object
+    TConnectAccountPayload:
+      properties:
+        nicknameOrKeyId:
+          title: TConnectAccountPayload.nicknameOrKeyId
+          type: string
+      required:
+        - nicknameOrKeyId
+      additionalProperties: false
+      title: TConnectAccountPayload
+      type: object
+    TWalletData:
+      properties:
+        walletName:
+          title: TWalletData.walletName
+          type: string
+        type:
+          title: TWalletData.type
+          type: string
+        threshold:
+          title: TWalletData.threshold
+          type: string
+        users:
+          items:
+            properties:
+              email:
+                title: email
+                type: string
+              role:
+                title: role
+                type: string
+              invited:
+                title: invited
+                type: boolean
+            required:
+              - email
+              - role
+            additionalProperties: false
+            type: object
+          title: TWalletData.users
+          type: array
+      required:
+        - walletName
+        - type
+        - threshold
+      additionalProperties: false
+      title: TWalletData
+      type: object
+    TWalletDataPayload:
+      properties:
+        walletData:
+          $ref: '#/components/schemas/TWalletData'
+          title: TWalletDataPayload.walletData
+      required:
+        - walletData
+      additionalProperties: false
+      title: TWalletDataPayload
+      type: object
+    TWallet:
+      properties:
+        walletName:
+          title: TWalletData.walletName
+          type: string
+        type:
+          title: TWalletData.type
+          type: string
+        threshold:
+          title: TWalletData.threshold
+          type: string
+        users:
+          items:
+            properties:
+              email:
+                title: email
+                type: string
+              role:
+                title: role
+                type: string
+              invited:
+                title: invited
+                type: boolean
+            required:
+              - email
+              - role
+            additionalProperties: false
+            type: object
+          title: TWalletData.users
+          type: array
+        walletId:
+          title: walletId
+          type: string
+        walletAddress:
+          title: walletAddress
+          type: string
+      required:
+        - walletName
+        - type
+        - threshold
+        - walletId
+        - walletAddress
+      additionalProperties: false
+      title: TWallet, TWalletData
+      type: object
+    TUserRole:
+      properties:
+        name:
+          title: TUserRole.name
+          type: string
+        description:
+          title: TUserRole.description
+          type: string
+        permissionNames:
+          items:
+            title: TUserRole.permissionNames.[]
+            type: string
+          title: TUserRole.permissionNames
+          type: array
+        createdTime:
+          title: TUserRole.createdTime
+          type: number
+        tenantId:
+          title: TUserRole.tenantId
+          type: string
+      required:
+        - name
+        - permissionNames
+        - createdTime
+      additionalProperties: false
+      title: TUserRole
+      type: object
+    TSearchUsersPayload:
+      properties:
+        email:
+          title: TSearchUsersPayload.email
+          type: string
+      additionalProperties: false
+      title: TSearchUsersPayload
+      type: object
+    TApproval:
+      properties:
+        id:
+          title: TApproval.id
+          type: string
+        date:
+          title: TApproval.date
+          type: number
+        action:
+          title: TApproval.action
+          type: string
+        initiator:
+          properties:
+            name:
+              title: TApproval.initiator.name
+              type: string
+            organiation:
+              title: TApproval.initiator.organiation
+              type: string
+          required:
+            - name
+            - organiation
+          additionalProperties: false
+          title: TApproval.initiator
+          type: object
+        status:
+          title: TApproval.status
+          type: string
+      required:
+        - id
+        - date
+        - action
+        - initiator
+        - status
+      additionalProperties: false
+      title: TApproval
+      type: object
