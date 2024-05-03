@@ -16,6 +16,10 @@ components:
           authorizationUrl: "https://demo.identityserver.io/connect/authorize"
           scopes:
             api: "api"
+    BearerAuth:    
+      type: http
+      scheme: bearer
+      bearerFormat: JWT    
   schemas:
     EApproveLoginOnAppStatus:
       type: string
@@ -228,6 +232,25 @@ paths:
                 name: "status"
                 type: number
                 example: "200"
+  /api/balance/{walletId}:
+    get:
+      tags:
+        - api
+      summary: Get the balance
+      description: Retrieves the balance of a specified wallet ID.
+      parameters:
+        - in: path
+          name: walletId
+          required: true
+          schema:
+            type: string
+          description: The ID of the wallet to retrieve the balance for.
+      responses:
+        '200':
+          description: Balance retrieved successfully.
+        '401':
+          description: Unauthorized access.
+
   /api/createWallet:
     post:
       tags:
@@ -249,6 +272,60 @@ paths:
             "application/json":
               schema:
                 $ref: "schemas/redux/api.yaml#/components/schemas/TWallet"
+
+  /api/transfers:
+    post:
+      tags:
+        - api
+      summary: Send Ether
+      description: Sends Ether from one address to another.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - walletID
+                - toAddress
+                - amount
+                - gasLimit
+                - gasPrice
+              properties:
+                WalletID:
+                  type: string
+                  description: "the wallet key, it permits to identify which wallet to use"
+                toAddress:
+                  type: string
+                  description: "The Ethereum address to which Ether is sent."
+                amount:
+                  type: string
+                  description: "Amount of Ether to send (in wei)."
+                gasLimit:
+                  type: integer
+                  description: "Gas limit for the transaction."
+                gasPrice:
+                  type: string
+                  description: "Gas price in wei per gas unit."
+                nonce:
+                  type: integer
+                  description: "Transaction count of the from address (optional)."
+      responses:
+        '200':
+          description: Transaction submitted successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactionHash:
+                    type: string
+                    description: "The hash of the submitted transaction."
+        '400':
+          description: Bad request.
+        '402':
+          description: Insufficient funds.
+
   /signup/approveLoginOnApp:
     post:
       tags:
